@@ -49,5 +49,21 @@ object Main {
   /**
     * Exercise 3
     */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int = {
+    if (money == 0) {
+      return 1;
+    }
+    if (coins.isEmpty) {
+      return 0
+    }
+    val coinDenomination = coins.head;
+    var numOfWays = 0;
+    var index = 0
+    while (coinDenomination * index <= money) {
+      numOfWays = numOfWays + countChange(
+        money - (coinDenomination * index), coins.tail)
+      index = index + 1
+    }
+    numOfWays
+  }
 }
